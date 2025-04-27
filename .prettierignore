@@ -1,0 +1,10 @@
+.angular/cache
+.DS_Store
+.editorconfig
+.gitignore
+.prettierignore
+coverage
+dist
+node_modules
+README.md
+src/assets

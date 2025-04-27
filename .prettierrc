@@ -1,0 +1,14 @@
+{
+  "bracketSameLine": true,
+  "htmlWhitespaceSensitivity": "ignore",
+  "printWidth": 120,
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": ["tsconfig.*"],
+      "options": {
+        "parser": "jsonc"
+      }
+    }
+  ]
+}
