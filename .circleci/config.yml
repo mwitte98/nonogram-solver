@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  lint-test-build:
+    docker:
+      - image: cimg/node:22.14.0
+    working_directory: ~/nonogram-solver
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/nonogram-solver
+      - restore_cache:
+          keys:
+            - nonogram-solver-{{ checksum "package-lock.json" }}
+            - nonogram-solver-
+      - run: npm install --legacy-peer-deps
+      - run: npm run lint
+      - run: npm run test-ci
+      - run: npm run build-prod
+      - save_cache:
+          key: nonogram-solver-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+
+workflows:
+  version: 2
+
+  commit:
+    jobs:
+      - lint-test-build:
+          filters:
+            branches:
+              ignore: main
